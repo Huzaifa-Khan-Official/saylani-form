@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.headerLogo {
+    width: 100%;
+}
+
+.formContainer {
+    display: flex;
+    margin: 20px 0;
+}
+
+.formContainer label {
+    width: 100%;
+}
+
+.cityDiv label {
+    color: #0d6db7;
+}
+
+.selectInputDiv {
+    height: 40px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.selectInputDiv select {
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    /* border-radius: 2px; */
+    position: relative;
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+}
