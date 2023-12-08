@@ -14,18 +14,46 @@
     <div class="header">
         <img src="./assets/cover logo.jpg" alt="" class="headerLogo">
     </div>
-    <div class="formContainer row justify-content-center">
-        <div class="cityDiv col-12 col-sm-12 mt_20 col-md-6 col-lg-5">
-            <label>Select City</label>
+    <div class="row justify-content-center formContainer">
+        <!-- select city div -->
+        <div class="cityDiv col-12 col-sm-12 col-md-6 col-lg-5">
+            <label id="formLabel">Select City</label>
             <div class="selectInputDiv">
                 <select name="select-city" id="select-city">
                     <option value="" disabled selected>Select city</option>
                     <option value="karachi">Karachi</option>
+                    <option value="lahore">Lahore</option>
+                    <option value="peshawar">Peshawar</option>
+                    <option value="islamabad">Islamabad</option>
                 </select>
             </div>
         </div>
-        <div class="courseDiv">
-            <label>Select Course or Event</label>
+        <!-- select course -->
+        <div class="courseDiv col-12 col-sm-12 col-md-6 col-lg-5">
+            <label id="formLabel">Select Course or Event</label>
+            <div class="selectInputDiv">
+                <select name="select-course" id="select-course">
+                    <option value="" disabled selected>Select Course or Event</option>
+                    <option value="web-&-mobile-app-development">Web & Mobile App Development</option>
+                    <option value="graphics-designing">Graphics Designing</option>
+                    <option value="video-animation">Video Animation</option>
+                    <option value="techno-kids">Techno Kids</option>
+                </select>
+            </div>
+        </div>
+        <!-- full Name Div -->
+        <div class="nameDiv col-12 col-sm-12 col-md-6 col-lg-5">
+            <label id="formLabel">Full Name</label>
+            <div class="inputDiv">
+                <input type="text" id="nameInput">
+            </div>
+        </div>
+        <!-- father Name Div -->
+        <div class="fatherNameDiv col-12 col-sm-12 col-md-6 col-lg-5">
+            <label id="formLabel">Father Name</label>
+            <div class="inputDiv">
+                <input type="text" id="fatherNameInput">
+            </div>
         </div>
     </div>
 

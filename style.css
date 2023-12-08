@@ -17,20 +17,40 @@
     width: 100%;
 }
 
-.cityDiv label {
+#formLabel {
     color: #0d6db7;
 }
 
-.selectInputDiv {
-    height: 40px;
-    margin-bottom: 10px;
+
+.selectInputDiv, .inputDiv {
     width: 100%;
+    margin: 10px 0;
 }
 
 .selectInputDiv select {
     background-color: #fff;
-    border: 1px solid #d9d9d9;
-    /* border-radius: 2px; */
+    color: #bfbfbf !important;
+    border-color: #8dc63f;
+    border-radius: 5px;
     position: relative;
-    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    transition: all .5s;
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+}
+
+.inputDiv input {
+    border: 1px solid #8dc63f;
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    background-color: initial;
+    border-radius: 5px;
+    color: #666;
+    outline: 0;
+    transition: all .5s;
+}
+
+.inputDiv input:focus, .selectInputDiv select:hover {
+    border: 1px solid #0d6db7 !important;
 }
