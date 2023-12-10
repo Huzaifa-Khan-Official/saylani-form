@@ -22,7 +22,8 @@
 }
 
 
-.selectInputDiv, .inputDiv {
+.selectInputDiv,
+.inputDiv {
     width: 100%;
     margin: 10px 0;
 }
@@ -52,7 +53,8 @@
     transition: all .5s;
 }
 
-.inputDiv input:focus, .selectInputDiv select:focus-visible {
+.inputDiv input:focus,
+.selectInputDiv select:focus-visible {
     border: 1px solid #0d6db7 !important;
     color: black;
 }
@@ -71,13 +73,15 @@
 .selectInputDiv select option {
     background-color: #fff;
     color: #333;
-    transition: background-color 0.3s; /* Add transition for smooth color change */
+    transition: background-color 0.3s;
+    /* Add transition for smooth color change */
 }
 
 /* Style for the hovered option */
 .selectInputDiv select option:hover {
     background-color: #0d6db7;
-    color: #fff; /* Change text color on hover if needed */
+    color: #fff;
+    /* Change text color on hover if needed */
 }
 
 .col-12 {
@@ -100,4 +104,68 @@
 
 .uploadBtnDiv:hover {
     border-color: #1890ff;
+}
+
+.uploadBtnDiv .inputDiv {
+    height: 100%;
+    margin: 0;
+    position: relative;
+}
+
+.uploadBtnDiv span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    width: 65px;
+}
+
+.uploadBtnDiv input[type=file] {
+    background-color: black;
+    height: 100%;
+    display: none;
+}
+
+.picRulesDiv ul {
+    list-style: none;
+    font-size: 14px;
+}
+
+.rulesDiv ol {
+    font-size: 14px;
+}
+
+.separaterLine {
+    margin: 24px 0;
+    min-width: 100%;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.165);
+}
+
+.submitBtnDiv button{
+    border: none;
+    font-size: 14px!important;
+    outline: none;
+    padding: 10px 30px;
+    width: 100%;
+}
+
+.submitBtnDiv  {
+    margin-bottom: 30px;
+}
+
+.submitBtn {
+    border-color: #0a58ca;
+    background-color: #0d6db7;
+    color: #fff;
+}
+
+@media (max-width: 425px) {
+    .upload-rulesDiv {
+        flex-direction: column;
+    }
+    .upload-rulesDiv ul {
+        padding: 0;
+    }
 }
