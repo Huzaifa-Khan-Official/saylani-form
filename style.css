@@ -35,7 +35,7 @@
     position: relative;
     transition: all .5s;
     width: 100%;
-    height: 40px;
+    height: 50px;
     padding: 0 10px;
 }
 
@@ -82,4 +82,22 @@
 
 .col-12 {
     margin-top: 15px;
+}
+
+.uploadBtnDiv {
+    background-color: #fafafa;
+    border: 1px dashed #d9d9d9;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 104px;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    text-align: center;
+    transition: border-color .3s;
+    vertical-align: top;
+    width: 104px;
+}
+
+.uploadBtnDiv:hover {
+    border-color: #1890ff;
 }
