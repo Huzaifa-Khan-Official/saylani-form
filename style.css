@@ -88,7 +88,8 @@
     margin-top: 15px;
 }
 
-.uploadBtnDiv {
+.uploadBtnDiv,
+.profilePicDiv {
     background-color: #fafafa;
     border: 1px dashed #d9d9d9;
     border-radius: 2px;
@@ -102,8 +103,21 @@
     width: 104px;
 }
 
-.uploadBtnDiv:hover {
+.uploadBtnDiv:hover,
+.profilePicDiv:hover {
     border-color: #1890ff;
+}
+
+.profilePicDiv {
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+#profileImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .uploadBtnDiv .inputDiv {
@@ -143,15 +157,15 @@
     border-top: 1px solid rgba(0, 0, 0, 0.165);
 }
 
-.submitBtnDiv button{
+.submitBtnDiv button {
     border: none;
-    font-size: 14px!important;
+    font-size: 14px !important;
     outline: none;
     padding: 10px 30px;
     width: 100%;
 }
 
-.submitBtnDiv  {
+.submitBtnDiv {
     margin-bottom: 30px;
 }
 
@@ -165,6 +179,7 @@
     .upload-rulesDiv {
         flex-direction: column;
     }
+
     .upload-rulesDiv ul {
         padding: 0;
     }

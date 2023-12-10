@@ -1,33 +1,85 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { app } from "./config.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDBc-Pl4KzZp5LtV72iJ_UlgYAW5NbDrdg",
-    authDomain: "saylani-form-clone.firebaseapp.com",
-    projectId: "saylani-form-clone",
-    storageBucket: "saylani-form-clone.appspot.com",
-    messagingSenderId: "484217162335",
-    appId: "1:484217162335:web:da892ec4634e7cbb86e9ea"
-};
+import {
+    getFirestore,
+    collection,
+    addDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const app = initializeApp(firebaseConfig);
+import {
+    getStorage,
+    ref,
+    uploadBytesResumable,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
+const db = getFirestore(app);
+// Initialize Cloud Storage and get a reference to the service
+const storage = getStorage();
 
 const picInputDiv = document.querySelector("#picInputDiv");
 const picInput = document.querySelector("#picInput");
+const profileImg = document.querySelector("#profileImg");
+const profilePicDiv = document.querySelector(".profilePicDiv");
 const submitBtn = document.querySelector(".submitBtn");
+const loader = document.querySelector(".spinner-border");
+let imgUrl;
+
+const downloadImageUrl = (file) => {
+    return new Promise((resolve, reject) => {
+        const profileImagesRef = ref(storage, `images/${file.name}/`);
+        const uploadTask = uploadBytesResumable(profileImagesRef, file);
+
+        uploadTask.on(
+            'state_changed',
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                switch (snapshot.state) {
+                    case 'paused':
+                        break;
+                    case 'running':
+                        profilePicDiv.innerHTML = `
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        `
+                        break;
+                }
+            },
+            (error) => {
+                reject(error);
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref)
+                    .then((downloadURL) => {
+                        resolve(downloadURL);
+                    })
+                    .catch((error) => {
+                        reject(error);
+                    });
+            }
+        );
+    });
+};
 
 picInputDiv.addEventListener("click", () => {
     picInput.click();
 })
 
-picInput.addEventListener("change", () => {
+picInput.addEventListener("change", async () => {
     if (picInput.files.length > 0) {
+        profilePicDiv.style.display = "flex";
         const file = picInput.files[0];
-        console.log("file", file);
+        imgUrl = await downloadImageUrl(file);
+        if (imgUrl) {
+            profilePicDiv.innerHTML = `
+            <img src="${imgUrl}" id="profileImg">
+            `
+        }
     }
 })
 
-submitBtn.addEventListener("click", () => {
+submitBtn.addEventListener("click", async () => {
     const selectCity = document.getElementById("select-city");
     const selectCourse = document.getElementById("select-course");
     const nameInput = document.getElementById("nameInput");
@@ -85,6 +137,8 @@ submitBtn.addEventListener("click", () => {
         location.href = "#last-qualification";
     } else if (!laptopAvailable) {
         location.href = "#have-laptop";
+    } else if (!imgUrl) {
+        location.href = "#picInput"
     } else {
         const studentData = {
             city,
@@ -99,9 +153,31 @@ submitBtn.addEventListener("click", () => {
             gender,
             address,
             qualification,
-            laptopAvailable
+            laptopAvailable,
+            imgUrl
         }
-        
+        try {
+            submitBtn.innerHTML = `
+            <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+            </div>
+            `;
+            const docRef = await addDoc(collection(db, "students"), {
+                ...studentData
+            });
+            Swal.fire({
+                title: "Good job!",
+                text: "Your form has been successfully submitted!",
+                icon: "success"
+            });
+            location.reload();
+        } catch (e) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
+        }
     }
 
 })
