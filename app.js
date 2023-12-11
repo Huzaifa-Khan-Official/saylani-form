@@ -3,7 +3,9 @@ import { app } from "./config.js";
 import {
     getFirestore,
     collection,
-    addDoc
+    addDoc,
+    setDoc,
+    doc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 import {
@@ -162,15 +164,38 @@ submitBtn.addEventListener("click", async () => {
                             <span class="visually-hidden">Loading...</span>
             </div>
             `;
-            const docRef = await addDoc(collection(db, "students"), {
+            await setDoc(doc(db, "students", cnic), {
+
+                // })
+                // await addDoc(collection(db, "students"), {
                 ...studentData
             });
+            submitBtn.innerHTML = `
+            Submit
+            `;
+
             Swal.fire({
                 title: "Good job!",
                 text: "Your form has been successfully submitted!",
                 icon: "success"
             });
-            location.reload();
+
+
+            selectCity.value = "";
+            selectCity.value = "";
+            nameInput.value = "";
+            fatherNameInput.value = "";
+            emailInput.value = "";
+            phoneInput.value = "";
+            cnicInput.value = "";
+            fatherCnicInput.value = "";
+            dateInput.value = "";
+            selectCourse.value = "";
+            addressInput.value = "";
+            lastQualification.value = "";
+            haveLaptop.value = "";
+            profilePicDiv.style.display = "none";
+
         } catch (e) {
             Swal.fire({
                 icon: 'error',

@@ -175,6 +175,11 @@
     color: #fff;
 }
 
+.submitBtn .spinner-border {
+    width: 20px;
+    height: 20px;
+}
+
 @media (max-width: 425px) {
     .upload-rulesDiv {
         flex-direction: column;
